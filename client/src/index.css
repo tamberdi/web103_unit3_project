@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800;900&display=swap');
 
 #root {
@@ -10,15 +10,15 @@
     background-color: var(--secondary-color);
     font-family: Nunito Sans, Verdana, sans-serif;
     height: 100vh;
-    --main-color: rgb(217, 29, 242);
-    --secondary-color: rgb(3, 1, 64);
+    --main-color: rgb(217, 119, 6);
+    --secondary-color: rgb(35, 60, 58);
     --primary: var(--main-color);
-    --primary-hover: rgb(111, 28, 166);
-    --primary-focus: rgb(217, 29, 242);
+    --primary-hover: rgb(166, 90, 4);
+    --primary-focus: rgb(245, 158, 11);
     --secondary: var(--secondary-color);
-    --secondary-hover: rgb(4, 66, 191);
-    --secondary-focus: rgb(111, 28, 166);
-    --h1-color: white;
+    --secondary-hover: rgb(20, 40, 38);
+    --secondary-focus: rgb(60, 90, 87);
+    --h1-color: rgb(92, 51, 23);
     --h2-color: white;
     --h3-color: white;
     --card-background-color: none;
@@ -36,10 +36,10 @@
 }
 
 #root h1 {
-    font-family: Rock Salt, cursive;
+    font-family: Permanent Marker, cursive;
     font-size: 3em;
     font-weight: bold;
-    text-shadow: 3px 3px 4px black;
+    text-shadow: 3px 3px 4px rgb(217, 119, 6);
 }
 
 #root h2 {
