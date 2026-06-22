@@ -1,4 +1,6 @@
 import React from "react";
+import EventsAPI from '../services/EventsAPI'
+import * as dates from '../utils/dates'
 
 const Events = () => {
     return (

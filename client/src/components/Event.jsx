@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import EventsAPI from '../services/EventsAPI'
+import * as dates from '../utils/dates'
 import '../css/Event.css'
 
 const Event = (props) => {
-
-    const [event, setEvent] = useState([])
-    const [time, setTime] = useState([])
-    const [remaining, setRemaining] = useState([])
+    const [event, setEvent] = useState({})
+    const [time, setTime] = useState('')
+    const [remaining, setRemaining] = useState('')
 
     useEffect(() => {
         (async () => {
@@ -14,49 +15,36 @@ const Event = (props) => {
                 setEvent(eventData)
             }
             catch (error) {
-                throw error
+                console.log(error)
             }
-        }) ()
-    }, [])
+        })()
+    }, [props.id])
 
     useEffect(() => {
-        (async () => {
-            try {
-                const result = await dates.formatTime(event.time)
-                setTime(result)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
+        if (!event.time) return
+        const result = dates.formatTime(event.time)
+        setTime(result)
     }, [event])
 
     useEffect(() => {
-        (async () => {
-            try {
-                const timeRemaining = await dates.formatRemainingTime(event.remaining)
-                setRemaining(timeRemaining)
-                dates.formatNegativeTimeRemaining(remaining, event.id)
-            }
-            catch (error) {
-                throw error
-            }
-        }) ()
+        if (!event.date || !event.time) return
+        const eventDateTime = dates.getEventDateTime(event.date, event.time)
+        const timeRemaining = dates.formatRemainingTime(eventDateTime)
+        setRemaining(timeRemaining)
+        dates.formatNegativeTimeRemaining(timeRemaining, event.id)
     }, [event])
 
     return (
         <article className='event-information'>
             <img src={event.image} />
-
             <div className='event-information-overlay'>
                 <div className='text'>
                     <h3>{event.title}</h3>
-                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date} <br /> {time}</p>
+                    <p><i className="fa-regular fa-calendar fa-bounce"></i> {event.date ? event.date.split('T')[0] : ''} <br /> {time}</p>
                     <p id={`remaining-${event.id}`}>{remaining}</p>
                 </div>
             </div>
         </article>
     )
 }
-
 export default Event
